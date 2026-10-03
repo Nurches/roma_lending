@@ -1,0 +1,62 @@
+:root {
+  // Ширина колонки: весь экран телефона, на десктопе — не шире 480px.
+  --w: min(100vw, 480px);
+  --u: calc(var(--w) / 320);
+  --blue: #0c42b6;
+  --navy: #051d50;
+  --red: #e52c50;
+  --pink: #ff5677;
+  --ink: #292929;
+  --card: #ececec;
+
+  // TT Firs Neue — шрифт макета (коммерческий); если установлен — используется он.
+  --font-text: 'TT Firs Neue', 'Golos Text', system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background:
+    radial-gradient(120% 60% at 50% 0%, #0c2a6e 0%, transparent 70%),
+    #050f2b;
+  font-family: var(--font-text);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

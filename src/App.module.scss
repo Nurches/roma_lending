@@ -1,0 +1,11 @@
+.page {
+  position: relative;
+  width: var(--w);
+  margin: 0 auto;
+  overflow-x: clip;
+  background: #fff;
+
+  @media (min-width: 481px) {
+    box-shadow: 0 0 80px rgb(0 0 0 / 0.45);
+  }
+}

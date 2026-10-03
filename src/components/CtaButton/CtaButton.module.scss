@@ -1,0 +1,95 @@
+@use '../../styles/u' as *;
+
+.cta {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: u(246);
+  height: u(61.635);
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+// Подложка из макета: SVG чуть выше кнопки (в нём нижняя тень 2px).
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: u(246);
+  height: u(63.635);
+  pointer-events: none;
+}
+
+// Мягкое «дыхание» свечения под кнопкой.
+.glow {
+  position: absolute;
+  inset: u(14) u(24) u(4);
+  border-radius: u(20);
+  background: var(--red);
+  filter: blur(u(14));
+  opacity: 0.12;
+  animation: breathe 2.8s ease-in-out infinite;
+}
+
+// Световой блик, пробегающий по кнопке.
+.shine {
+  position: absolute;
+  inset: 0;
+  border-radius: u(20);
+  overflow: hidden;
+  pointer-events: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 45%;
+    background: linear-gradient(100deg, transparent 0%, rgb(255 255 255 / 0.45) 50%, transparent 100%);
+    transform: translateX(-120%) skewX(-18deg);
+    animation: sweep 3.6s cubic-bezier(0.6, 0, 0.2, 1) 1.8s infinite;
+  }
+}
+
+.label {
+  position: relative;
+  font-family: var(--font-text);
+  font-weight: 600;
+  font-size: u(16);
+  line-height: 0.95;
+  letter-spacing: u(0.32);
+  text-transform: uppercase;
+  color: #fff;
+}
+
+@keyframes sweep {
+  0% {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  45%,
+  100% {
+    transform: translateX(260%) skewX(-18deg);
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.12;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow,
+  .shine::after {
+    animation: none;
+  }
+}

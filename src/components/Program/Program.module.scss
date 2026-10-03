@@ -1,0 +1,166 @@
+@use '../../styles/u' as *;
+
+// Координаты — из фрейма «1 блок» (320×590) в Figma.
+.program {
+  position: relative;
+  overflow: clip;
+  padding-bottom: u(43.365);
+  background: #fff;
+}
+
+// Фоновый «завиток»: центр (166.14; 216.76), повёрнут и скошен как в макете.
+.swirl {
+  position: absolute;
+  left: u(-82.77);
+  top: u(-94.03);
+  width: u(497.825);
+  height: u(621.576);
+  pointer-events: none;
+}
+
+.swirlShape {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-41.72deg) skewX(-3.48deg);
+
+  img {
+    position: absolute;
+    left: -2.91%;
+    top: -2.33%;
+    width: u(526.835);
+    height: u(650.581);
+    max-width: none;
+  }
+}
+
+.heading {
+  position: relative;
+  height: u(116);
+}
+
+.title {
+  position: absolute;
+  left: u(50.7984);
+  top: u(33.4);
+  width: u(218);
+  height: u(48);
+}
+
+.script {
+  position: absolute;
+  left: u(71.4384);
+  top: u(66.1775);
+  width: u(180);
+  height: u(57);
+}
+
+.days {
+  position: relative;
+  display: grid;
+  gap: u(10);
+  list-style: none;
+}
+
+.day {
+  position: relative;
+  padding-left: u(33);
+}
+
+.card {
+  width: u(277);
+  min-height: calc(var(--min-h) * var(--u));
+  padding: calc(var(--pad-top) * var(--u)) 0 u(14) u(33);
+  // Обводка «inside», как в Figma: не влияет на геометрию.
+  box-shadow: inset 0 0 0 u(0.5) #fff;
+  border-radius: u(10);
+  background: var(--card);
+  backdrop-filter: blur(u(29.55));
+  -webkit-backdrop-filter: blur(u(29.55));
+  font-size: u(13);
+  // 1.12 × 13 = 14.56, Figma округляет до 15px — так и в эталоне.
+  line-height: u(15);
+  color: var(--ink);
+}
+
+.dayTitle {
+  width: calc(var(--text-w) * var(--u));
+  font-weight: 600;
+  font-size: inherit;
+  line-height: inherit;
+  color: var(--blue);
+}
+
+.items {
+  width: calc(var(--text-w) * var(--u));
+  list-style: none;
+
+  li {
+    position: relative;
+    margin-left: u(19.5);
+  }
+
+  // Маркер как в макете: точка ~2.2px, центр на 8px ниже верха строки, в 10px левее текста.
+  li::before {
+    content: '';
+    position: absolute;
+    left: u(-11.2);
+    top: u(6.9);
+    width: u(2.2);
+    height: u(2.2);
+    border-radius: 50%;
+    background: currentColor;
+  }
+}
+
+.date {
+  position: absolute;
+  left: u(10);
+  top: calc(50% - #{u(10)});
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: u(46);
+  height: u(20);
+  border-radius: u(6);
+  background: var(--blue);
+  font-weight: 500;
+  font-size: u(10);
+  line-height: 1;
+  color: #fff;
+
+  // Пульсирующее кольцо — «эфир идёт».
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid var(--blue);
+    opacity: 0;
+    animation: ping 2.4s cubic-bezier(0, 0, 0.2, 1) 1.5s infinite;
+  }
+}
+
+@keyframes ping {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  80%,
+  100% {
+    opacity: 0;
+    transform: scale(1.45, 1.9);
+  }
+}
+
+.ctaRow {
+  display: flex;
+  margin-top: u(17);
+  padding-left: u(37);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .date::after {
+    animation: none;
+  }
+}
